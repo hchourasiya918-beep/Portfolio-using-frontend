@@ -21,13 +21,31 @@
 }
 
 body {
-    background-color: var(--bg-dark);
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
-    background-attachment: fixed;
+    background-color: transparent; /* Made transparent so the video shows through */
     color: var(--text-main);
     line-height: 1.6;
+}
+
+.background-video { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.85); /* Adds a dark tint to make text readable over the video */
 }
 
 /* ================= HEADER & NAVIGATION ================= */
@@ -154,18 +172,6 @@ nav ul li a:hover {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
 }
 
-.btn.second {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-main);
-    border: 1px solid var(--card-border);
-    box-shadow: none;
-}
-
-.btn.second:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
 /* ================= SECTIONS & CARDS ================= */
 section {
     padding: 90px 10%;
@@ -192,11 +198,10 @@ section h2::after {
     border-radius: 2px;
 }
 
-/* Common Card Base Style */
-.about-box, 
-.education-box, 
-.contact-box, 
-.project-card, 
+.about, 
+.education, 
+.contact, 
+.project, 
 .skill {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
@@ -206,10 +211,9 @@ section h2::after {
     box-shadow: var(--shadow-soft);
 }
 
-/* About, Education & Contact Sections */
-.about-box, 
-.education-box, 
-.contact-box {
+.about, 
+.education, 
+.contact {
     max-width: 750px;
     margin: auto;
     padding: 35px;
@@ -218,19 +222,19 @@ section h2::after {
     color: var(--text-muted);
 }
 
-.contact-box a {
+.contact a {
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
 }
 
-.contact-box a:hover {
+.contact a:hover {
     text-decoration: underline;
 }
 
 /* Skills Grid */
-.skills-container {
+.skills {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -253,45 +257,36 @@ section h2::after {
 }
 
 /* Project Cards */
-.project-container {
+.projects {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 28px;
 }
 
-.project-card {
+.project {
     width: 320px;
     padding: 28px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card:hover {
+.project:hover {
     transform: translateY(-8px);
     border-color: rgba(56, 189, 248, 0.3);
     box-shadow: var(--shadow-glow);
 }
 
-.project-card h3 {
+.project h3 {
     color: var(--text-main);
     font-size: 20px;
     margin-bottom: 12px;
 }
 
-.project-card p {
+.project p {
     color: var(--text-muted);
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 20px;
-}
-
-.project-card span {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent-blue);
-    background: rgba(56, 189, 248, 0.1);
-    padding: 6px 12px;
-    border-radius: 20px;
 }
 
 /* ================= FOOTER ================= */
@@ -321,17 +316,7 @@ footer {
         font-size: 36px;
     }
 
-    .home-content h3 {
-        font-size: 18px;
-    }
-
     section {
         padding: 60px 6%;
-    }
-
-    .about-box, 
-    .education-box, 
-    .contact-box {
-        padding: 25px;
     }
 }
